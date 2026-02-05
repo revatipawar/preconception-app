@@ -101,3 +101,47 @@ document.getElementById("dadBtn").onclick = () => {
 
 // Init
 loadData();
+
+function saveProfile() {
+  const profile = {
+    age: document.getElementById("age").value,
+    height: document.getElementById("height").value,
+    weight: document.getElementById("weight").value,
+    dietType: document.getElementById("dietType").value,
+    activity: document.getElementById("activity").value,
+    sunExposure: document.getElementById("sunExposure").checked,
+    supplements: {
+      dha: document.getElementById("dha").checked,
+      folate: document.getElementById("folate").checked,
+      vitd: document.getElementById("vitd").checked,
+      iron: document.getElementById("iron").checked,
+      coq10: document.getElementById("coq10").checked
+    }
+  };
+
+  localStorage.setItem("userProfile", JSON.stringify(profile));
+  alert("Profile saved successfully ✅");
+}
+
+// Load profile on page load
+function loadProfile() {
+  const saved = localStorage.getItem("userProfile");
+  if (!saved) return;
+
+  const profile = JSON.parse(saved);
+  document.getElementById("age").value = profile.age;
+  document.getElementById("height").value = profile.height;
+  document.getElementById("weight").value = profile.weight;
+  document.getElementById("dietType").value = profile.dietType;
+  document.getElementById("activity").value = profile.activity;
+  document.getElementById("sunExposure").checked = profile.sunExposure;
+
+  document.getElementById("dha").checked = profile.supplements.dha;
+  document.getElementById("folate").checked = profile.supplements.folate;
+  document.getElementById("vitd").checked = profile.supplements.vitd;
+  document.getElementById("iron").checked = profile.supplements.iron;
+  document.getElementById("coq10").checked = profile.supplements.coq10;
+}
+
+// Call on load
+window.addEventListener("load", loadProfile);
