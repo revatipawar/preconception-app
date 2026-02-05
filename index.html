@@ -8,81 +8,73 @@
 </head>
 <body>
 
-  <header>
-    <h1>🌱 Pre-Conception Care</h1>
-    <p>Daily veg nutrition for mom & dad</p>
-  </header>
+<header>
+  <h1>🌱 Pre-Conception Care</h1>
+  <p>Food-first nutrition for mom & dad</p>
+</header>
 
-  <section class="toggle">
-    <button id="momBtn" class="active">Mom-to-be</button>
-    <button id="dadBtn">Dad-to-be</button>
-  </section>
-
-  <main>
-<section id="profile" class="card">
-  <h2>👤 Profile</h2>
-
-  <label>
-    Age
-    <input type="number" id="age" placeholder="Years">
-  </label>
-
-  <label>
-    Height (cm)
-    <input type="number" id="height" placeholder="cm">
-  </label>
-
-  <label>
-    Weight (kg)
-    <input type="number" id="weight" placeholder="kg">
-  </label>
-
-  <label>
-    Diet Type
-    <select id="dietType">
-      <option value="veg">Vegetarian</option>
-      <option value="dairy">Dairy Vegetarian</option>
-      <option value="vegan">Vegan</option>
-      <option value="nonveg">Non-Vegetarian</option>
-    </select>
-  </label>
-
-  <label>
-    Activity Level
-    <select id="activity">
-      <option value="low">Mostly sitting</option>
-      <option value="moderate">Light exercise</option>
-      <option value="high">Regular exercise</option>
-    </select>
-  </label>
-
-  <label class="checkbox">
-    <input type="checkbox" id="sunExposure">
-    Regular sunlight exposure
-  </label>
-
-  <h3>Supplements (if any)</h3>
-  <label class="checkbox"><input type="checkbox" id="dha"> DHA</label>
-  <label class="checkbox"><input type="checkbox" id="folate"> L-Methylfolate</label>
-  <label class="checkbox"><input type="checkbox" id="vitd"> Vitamin D</label>
-  <label class="checkbox"><input type="checkbox" id="iron"> Iron</label>
-  <label class="checkbox"><input type="checkbox" id="coq10"> CoQ10 (optional)</label>
-
-  <button onclick="saveProfile()">Save Profile</button>
+<section class="toggle">
+  <button id="momBtn" class="active">Mom-to-be</button>
+  <button id="dadBtn">Dad-to-be</button>
 </section>
 
-  <section id="foodSelection"></section>
+<main>
 
-  <section id="results"></section>
+  <!-- PROFILE -->
+  <section class="card">
+    <h2>👤 Profile</h2>
+
+    <label>Age
+      <input type="number" id="age">
+    </label>
+
+    <label>Height (cm)
+      <input type="number" id="height">
+    </label>
+
+    <label>Weight (kg)
+      <input type="number" id="weight">
+    </label>
+
+    <label>Diet
+      <select id="diet">
+        <option value="veg">Vegetarian</option>
+        <option value="dairy">Dairy Vegetarian</option>
+        <option value="vegan">Vegan</option>
+        <option value="nonveg">Non-Vegetarian</option>
+      </select>
+    </label>
+
+    <label>Activity
+      <select id="activity">
+        <option value="low">Mostly sitting</option>
+        <option value="moderate">Light exercise</option>
+        <option value="high">Regular exercise</option>
+      </select>
+    </label>
+
+    <h3>Supplements</h3>
+    <label><input type="checkbox" id="supp_dha"> DHA</label>
+    <label><input type="checkbox" id="supp_folate"> L-Methylfolate</label>
+    <label><input type="checkbox" id="supp_vitd"> Vitamin D</label>
+    <label><input type="checkbox" id="supp_iron"> Iron</label>
+    <label><input type="checkbox" id="supp_coq10"> CoQ10 (optional)</label>
+
+    <button onclick="saveProfile()">Save Profile</button>
+  </section>
+
+  <!-- FOOD SELECTION -->
+  <section id="foodSelection" class="card"></section>
+
+  <!-- RESULTS -->
+  <section id="results" class="card"></section>
 
 </main>
 
+<footer>
+  <p>Evidence-based • Vegetarian-friendly</p>
+</footer>
 
-  <footer>
-    <p>Evidence-based · Vegetarian · Simple</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
