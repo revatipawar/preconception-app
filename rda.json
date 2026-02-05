@@ -3,19 +3,47 @@
     "protein": 60,
     "carbs": 225,
     "fat": 70,
+    "fiber": 25,
+
     "iron": 18,
     "calcium": 1000,
+    "magnesium": 310,
+    "zinc": 8,
+    "selenium": 55,
+    "iodine": 150,
+
+    "vitamin_a": 700,
+    "vitamin_c": 75,
+    "vitamin_d": 2000,
+    "vitamin_e": 15,
+    "vitamin_k": 90,
+
     "folate": 400,
     "b12": 2.4,
+    "b6": 1.3,
     "choline": 425
   },
   "dad": {
     "protein": 65,
     "carbs": 260,
     "fat": 80,
+    "fiber": 30,
+
     "iron": 8,
     "calcium": 1000,
+    "magnesium": 400,
+    "zinc": 11,
+    "selenium": 55,
+    "iodine": 150,
+
+    "vitamin_a": 900,
+    "vitamin_c": 90,
+    "vitamin_d": 2000,
+    "vitamin_e": 15,
+    "vitamin_k": 120,
+
     "b12": 2.4,
+    "b6": 1.3,
     "choline": 550
   }
 }
