@@ -1,0 +1,35 @@
+{
+  "quinoa": {
+    "portion": "1 cup cooked",
+    "protein": 8,
+    "carbs": 39,
+    "fat": 4,
+    "iron": 2.8,
+    "magnesium": 118,
+    "choline": 43
+  },
+  "moong_dal": {
+    "portion": "1 cup cooked",
+    "protein": 14,
+    "carbs": 28,
+    "fat": 1,
+    "iron": 2.9,
+    "folate": 159
+  },
+  "milk": {
+    "portion": "1 glass (250 ml)",
+    "protein": 8,
+    "carbs": 12,
+    "fat": 8,
+    "calcium": 300,
+    "b12": 1.2
+  },
+  "curd": {
+    "portion": "1 cup",
+    "protein": 6,
+    "carbs": 8,
+    "fat": 4,
+    "calcium": 200,
+    "b12": 0.6
+  }
+}

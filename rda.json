@@ -1,0 +1,21 @@
+{
+  "mom": {
+    "protein": 60,
+    "carbs": 225,
+    "fat": 70,
+    "iron": 18,
+    "calcium": 1000,
+    "folate": 400,
+    "b12": 2.4,
+    "choline": 425
+  },
+  "dad": {
+    "protein": 65,
+    "carbs": 260,
+    "fat": 80,
+    "iron": 8,
+    "calcium": 1000,
+    "b12": 2.4,
+    "choline": 550
+  }
+}
