@@ -1,119 +1,45 @@
-let foods = {};
-let rda = {};
-let userType = "mom";
-let selectedFoods = [];
+function showProfile(type) {
+  document.getElementById("momProfile").classList.add("hidden");
+  document.getElementById("dadProfile").classList.add("hidden");
 
-/* ---------- LOAD DATA ---------- */
-async function loadData() {
-  foods = await fetch("foods.json").then(r => r.json());
-  rda = await fetch("rda.json").then(r => r.json());
-  renderFoods();
-  loadProfile();
+  document.getElementById(type + "Profile").classList.remove("hidden");
+  loadProfile(type);
 }
 
-/* ---------- PROFILE ---------- */
-function saveProfile() {
+function saveProfile(type) {
   const profile = {
-    age: age.value,
-    height: height.value,
-    weight: weight.value,
-    diet: diet.value,
-    activity: activity.value,
+    age: document.getElementById(type + "_age").value,
+    height: document.getElementById(type + "_height").value,
+    weight: document.getElementById(type + "_weight").value,
+    diet: document.getElementById(type + "_diet").value,
+    activity: document.getElementById(type + "_activity").value,
     supplements: {
-      dha: supp_dha.checked,
-      folate: supp_folate.checked,
-      vitd: supp_vitd.checked,
-      iron: supp_iron.checked,
-      coq10: supp_coq10.checked
+      dha: document.getElementById(type + "_dha")?.checked || false,
+      folate: document.getElementById(type + "_folate")?.checked || false,
+      iron: document.getElementById(type + "_iron")?.checked || false,
+      coq10: document.getElementById(type + "_coq10")?.checked || false,
+      vitd: document.getElementById(type + "_vitd")?.checked || false
     }
   };
-  localStorage.setItem("profile", JSON.stringify(profile));
-  alert("Profile saved ✅");
+
+  localStorage.setItem("profile_" + type, JSON.stringify(profile));
+  alert(type.toUpperCase() + " profile saved ✅");
 }
 
-function loadProfile() {
-  const saved = localStorage.getItem("profile");
+function loadProfile(type) {
+  const saved = localStorage.getItem("profile_" + type);
   if (!saved) return;
 
   const p = JSON.parse(saved);
-  age.value = p.age;
-  height.value = p.height;
-  weight.value = p.weight;
-  diet.value = p.diet;
-  activity.value = p.activity;
 
-  supp_dha.checked = p.supplements.dha;
-  supp_folate.checked = p.supplements.folate;
-  supp_vitd.checked = p.supplements.vitd;
-  supp_iron.checked = p.supplements.iron;
-  supp_coq10.checked = p.supplements.coq10;
+  document.getElementById(type + "_age").value = p.age;
+  document.getElementById(type + "_height").value = p.height;
+  document.getElementById(type + "_weight").value = p.weight;
+  document.getElementById(type + "_diet").value = p.diet;
+  document.getElementById(type + "_activity").value = p.activity;
+
+  for (let key in p.supplements) {
+    const el = document.getElementById(type + "_" + key);
+    if (el) el.checked = p.supplements[key];
+  }
 }
-
-/* ---------- USER TYPE ---------- */
-momBtn.onclick = () => switchUser("mom");
-dadBtn.onclick = () => switchUser("dad");
-
-function switchUser(type) {
-  userType = type;
-  momBtn.classList.toggle("active", type === "mom");
-  dadBtn.classList.toggle("active", type === "dad");
-  calculate();
-}
-
-/* ---------- FOOD ---------- */
-function renderFoods() {
-  const box = document.getElementById("foodSelection");
-  box.innerHTML = "<h2>🍽 Foods eaten today</h2>";
-
-  Object.keys(foods).forEach(f => {
-    box.innerHTML += `
-      <label>
-        <input type="checkbox" onchange="toggleFood('${f}')">
-        ${f.replace(/_/g, " ")} (${foods[f].portion})
-      </label>
-    `;
-  });
-}
-
-function toggleFood(food) {
-  selectedFoods.includes(food)
-    ? selectedFoods = selectedFoods.filter(f => f !== food)
-    : selectedFoods.push(food);
-  calculate();
-}
-
-/* ---------- CALCULATION ---------- */
-function calculate() {
-  let totals = {};
-  selectedFoods.forEach(f => {
-    for (let n in foods[f]) {
-      if (n !== "portion") {
-        totals[n] = (totals[n] || 0) + foods[f][n];
-      }
-    }
-  });
-  renderResults(totals);
-}
-
-function renderResults(totals) {
-  const box = document.getElementById("results");
-  box.innerHTML = "<h2>📊 Daily Nutrition</h2>";
-
-  Object.keys(rda[userType]).forEach(n => {
-    const val = totals[n] || 0;
-    const req = rda[userType][n];
-    const pct = Math.round((val / req) * 100);
-
-    const color = pct >= 80 ? "green" : pct >= 40 ? "orange" : "red";
-
-    box.innerHTML += `
-      <div>
-        <strong>${n.toUpperCase()}</strong>:
-        ${val.toFixed(1)} / ${req}
-        <span style="color:${color}">(${pct}%)</span>
-      </div>
-    `;
-  });
-}
-
-loadData();
